@@ -23,10 +23,12 @@ namespace System.Linq
                 ThrowHelper.ThrowArgumentNullException(ExceptionArgument.selector);
             }
 
+#if !OPTIMIZE_FOR_TRIMMING
             if (source is Iterator<TSource> iterator)
             {
                 return iterator.Select(selector);
             }
+#endif
 
             if (source is IList<TSource> ilist)
             {
